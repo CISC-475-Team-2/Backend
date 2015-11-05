@@ -9,5 +9,9 @@ namespace SeatingChartAPI.Controllers
 {
     public class SeatingChartController : ApiController
     {
+        public IHttpActionResult GetProduct()
+        {
+            return Ok(System.IO.File.ReadAllText("/App_Data/SeatingJSON.txt"));
+        }
     }
 }
