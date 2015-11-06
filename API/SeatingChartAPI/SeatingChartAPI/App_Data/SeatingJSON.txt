@@ -1,6 +1,6 @@
 ﻿{
 	"emaswitch00":{
-		"ports":[
+		"ports":{
 			"A1":{
 				"firstName":"John",
 				"lastName":"Doe",
@@ -17,10 +17,10 @@
 				"department":"Marketing",
 				"email":"doej@email.com"
 			}
-		]
+		}
 	},
 	"emaswitch01":{
-		"ports":[
+		"ports":{
 			"B1":{
 				"firstName":"Ryan",
 				"lastName":"Serva",
@@ -28,7 +28,7 @@
 				"city":"Newark",
 				"department":"Software",
 				"email":"rserva@email.com"
-			},
-		]
+			}
+		}
 	}
 }

@@ -7,9 +7,11 @@ using System.Web.Http;
 
 namespace SeatingChartAPI.Controllers
 {
+    [Route("api/[controller]")]
     public class SeatingChartController : ApiController
     {
-        public IHttpActionResult GetProduct()
+        [HttpGet()]
+        public IHttpActionResult GetSeatingChart()
         {
             return Ok(System.IO.File.ReadAllText("/App_Data/SeatingJSON.txt"));
         }
