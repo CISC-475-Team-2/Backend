@@ -10,7 +10,7 @@ namespace SeatingChartAPI.Controllers
     {
         static string cString = "server=us-cdbr-azure-central-a.cloudapp.net;"+
                                 "database=seatingChart;"+
-                                "Truested_Connection = yes"+
+                                "Trusted_Connection = yes"+
                                 "uid=bd4630ac6f11d6;"+
                                 "pwd=4089a061;";
         static SqlConnection sqlcon;
