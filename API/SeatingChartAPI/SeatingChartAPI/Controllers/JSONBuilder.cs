@@ -51,5 +51,13 @@ namespace SeatingChartAPI.Controllers
             return portData;
         }
 
+        public void writeDictionaryToFile(Dictionary<string, Dictionary<string, string>> portData)
+        {
+            var entries = portData.Select(d =>
+        string.Format("\"{0}\": [{1}]", d.Key, string.Join(",", d.Value)));
+            string JSONstring = "{" + string.Join(",", entries) + "}";
+            System.IO.File.WriteAllText(@"C:\Users\Public\App_Data\seatingChartJSON.txt", JSONstring);
+        }
+
     }
 }

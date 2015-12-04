@@ -38,7 +38,6 @@ namespace SeatingChartAPI.Controllers
             catch (Exception ex)
             {
                 Console.WriteLine(ex.ToString());
-                throw (ex);
             }
         }
 
@@ -51,7 +50,6 @@ namespace SeatingChartAPI.Controllers
             catch (Exception ex)
             {
                 Console.WriteLine(ex.ToString());
-                throw (ex);
             }
         }
 
@@ -59,7 +57,7 @@ namespace SeatingChartAPI.Controllers
         {
             Dictionary<string, string> userSet = new Dictionary<string, string>();
             SqlDataReader myReader = null;
-            SqlCommand myCommand = new SqlCommand("SELECT * FROM Users WHERE userName ="+userName, sqlcon);
+            SqlCommand myCommand = new SqlCommand("SELECT * FROM agent_activedirectory WHERE userName =" + userName, sqlcon);
             myReader = myCommand.ExecuteReader();
             while (myReader.Read())
             {
@@ -77,7 +75,7 @@ namespace SeatingChartAPI.Controllers
         {
             Dictionary<string, string> portSet = new Dictionary<string, string>();
             SqlDataReader myReader = null;
-            SqlCommand myCommand = new SqlCommand("SELECT * FROM InternalWebSites WHERE DevicePhysicalAddress =" + physicalAddr, sqlcon);
+            SqlCommand myCommand = new SqlCommand("SELECT * FROM agent_internalwebsites WHERE DevicePhysicalAddress =" + physicalAddr, sqlcon);
             myReader = myCommand.ExecuteReader();
             return myReader["Username"].ToString();
         }
@@ -86,7 +84,7 @@ namespace SeatingChartAPI.Controllers
         {
             Dictionary<string, Dictionary<string, string>> switches = new Dictionary<string, Dictionary<string, string>>();
             SqlDataReader myReader = null;
-            SqlCommand myCommand = new SqlCommand("SELECT * FROM NetworkSwitches", sqlcon);
+            SqlCommand myCommand = new SqlCommand("SELECT * FROM agent_networkswitch", sqlcon);
             myReader = myCommand.ExecuteReader();
             while (myReader.Read())
             {

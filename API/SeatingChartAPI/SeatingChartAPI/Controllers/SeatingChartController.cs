@@ -13,7 +13,11 @@ namespace SeatingChartAPI.Controllers
         [HttpGet()]
         public IHttpActionResult GetSeatingChart()
         {
-            return Ok(System.IO.File.ReadAllText("/App_Data/SeatingJSON.txt"));
+            JSONBuilder jb = new JSONBuilder();
+            Dictionary<string, Dictionary<string, string>> data = jb.loadData();
+            jb.handleNoise(data);
+            jb.writeDictionaryToFile(data);
+            return Ok(System.IO.File.ReadAllText(@"C:\Users\Public\App_Data\seatingChartJSON.txt"));
         }
     }
 }
