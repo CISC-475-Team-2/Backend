@@ -9,7 +9,7 @@ namespace SeatingChartAPI.Controllers
     public class DBConnector
     {
         static string cString = "server=us-cdbr-azure-central-a.cloudapp.net;"+
-                                "database=seatingChart;"+
+                                "database=seatingchart;"+
                                 "Trusted_Connection = yes"+
                                 "uid=bd4630ac6f11d6;"+
                                 "pwd=4089a061;";
