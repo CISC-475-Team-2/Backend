@@ -8,9 +8,9 @@ namespace SeatingChartAPI.Controllers
 {
     public class DBConnector
     {
-        static string cString = "server=us-cdbr-azure-central-a.cloudapp.net;"+
+        private string cString = "server=us-cdbr-azure-central-a.cloudapp.net;"+
                                 "database=seatingchart;"+
-                                "Trusted_Connection = yes"+
+                                "Trusted_Connection = yes;"+
                                 "uid=bd4630ac6f11d6;"+
                                 "pwd=4089a061;";
         static SqlConnection sqlcon;
@@ -56,9 +56,8 @@ namespace SeatingChartAPI.Controllers
         public Dictionary<string, string> getUserData(string userName)
         {
             Dictionary<string, string> userSet = new Dictionary<string, string>();
-            SqlDataReader myReader = null;
             SqlCommand myCommand = new SqlCommand("SELECT * FROM agent_activedirectory WHERE userName =" + userName, sqlcon);
-            myReader = myCommand.ExecuteReader();
+            SqlDataReader myReader = myCommand.ExecuteReader();
             while (myReader.Read())
             {
                 userSet.Add("firstName", myReader["FirstName"].ToString() );
@@ -74,18 +73,16 @@ namespace SeatingChartAPI.Controllers
         public string getConnectedUser(string physicalAddr)
         {
             Dictionary<string, string> portSet = new Dictionary<string, string>();
-            SqlDataReader myReader = null;
             SqlCommand myCommand = new SqlCommand("SELECT * FROM agent_internalwebsites WHERE DevicePhysicalAddress =" + physicalAddr, sqlcon);
-            myReader = myCommand.ExecuteReader();
+            SqlDataReader myReader = myCommand.ExecuteReader();
             return myReader["Username"].ToString();
         }
 
         public Dictionary<string, Dictionary<string, string>> getPortInfo()
         {
             Dictionary<string, Dictionary<string, string>> switches = new Dictionary<string, Dictionary<string, string>>();
-            SqlDataReader myReader = null;
             SqlCommand myCommand = new SqlCommand("SELECT * FROM agent_networkswitch", sqlcon);
-            myReader = myCommand.ExecuteReader();
+            SqlDataReader  myReader = myCommand.ExecuteReader();
             while (myReader.Read())
             {
                 Dictionary<string, string> switchSet = new Dictionary<string, string>();

@@ -10,8 +10,10 @@ namespace SeatingChartAPI.Controllers
     [Route("api/[controller]")]
     public class SeatingChartController : ApiController
     {
+
+
         [HttpGet()]
-        public IHttpActionResult GetSeatingChart()
+        public IHttpActionResult Get()
         {
             JSONBuilder jb = new JSONBuilder();
             Dictionary<string, Dictionary<string, string>> data = jb.loadData();
@@ -19,5 +21,6 @@ namespace SeatingChartAPI.Controllers
             jb.writeDictionaryToFile(data);
             return Ok(System.IO.File.ReadAllText(@"C:\Users\Public\App_Data\seatingChartJSON.txt"));
         }
+
     }
 }
