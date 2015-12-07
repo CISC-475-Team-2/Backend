@@ -16,7 +16,7 @@ namespace SeatingChartAPI.Controllers
         public IHttpActionResult Get()
         {
             JSONBuilder jb = new JSONBuilder();
-            Dictionary<string, Dictionary<string, string>> data = jb.loadData();
+            Dictionary<string, Dictionary<string, Dictionary<string, string>>> data = jb.loadData();
             jb.handleNoise(data);
             jb.writeDictionaryToFile(data);
             return Ok(System.IO.File.ReadAllText(@"C:\Users\Public\App_Data\seatingChartJSON.txt"));
