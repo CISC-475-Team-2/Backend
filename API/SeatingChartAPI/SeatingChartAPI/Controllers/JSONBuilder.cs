@@ -75,7 +75,7 @@ namespace SeatingChartAPI.Controllers
                 {
                     first = false;
                 }
-                JSONString = JSONString + entry.Key+":{";
+                JSONString = JSONString + "\"" + entry.Key + "\"" +":{";
                 Boolean first2 = true;
                 foreach (KeyValuePair<string, Dictionary<string, string>> entry2 in entry.Value)
                 {
@@ -87,7 +87,7 @@ namespace SeatingChartAPI.Controllers
                     {
                         first2 = false;
                     }
-                    JSONString = JSONString + entry2.Key + ":{";
+                    JSONString = JSONString + "\"" + entry2.Key + "\":{";
                     Boolean first3 = true;
                     foreach (KeyValuePair<string, string> entry3 in entry2.Value)
                     {
@@ -99,7 +99,7 @@ namespace SeatingChartAPI.Controllers
                         {
                             first3 = false;
                         }
-                        JSONString = JSONString + entry3.Key+":'"+entry3.Value+"'";
+                        JSONString = JSONString +"\"" + entry3.Key+"\":\""+entry3.Value+"\"";
                     }
                     JSONString = JSONString + "}";
                 }
