@@ -57,6 +57,7 @@ namespace SeatingChartAPI.Controllers
             SqlDataReader myReader = myCommand.ExecuteReader();
             while (myReader.Read())
             {
+                userSet.Add("id", myReader["id"].ToString());
                 userSet.Add("firstName", myReader["FirstName"].ToString() );
                 userSet.Add("lastName", myReader["LastName"].ToString());
                 userSet.Add("userName", myReader["Username"].ToString());
