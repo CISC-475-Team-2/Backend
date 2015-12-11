@@ -16,30 +16,50 @@ namespace SeatingChartAPI.Controllers
 
         public Dictionary<string, Dictionary<string, Dictionary<string, string>>> loadData()
         {
-            dbcon.connectToDB();
-            Dictionary<string, Dictionary<string, string>> ports = dbcon.getPortInfo();
-            Dictionary<string, Dictionary<string, Dictionary<string, string>>> newPorts = new Dictionary<string, Dictionary<string, Dictionary<string, string>>>();
-            foreach (KeyValuePair<string, Dictionary<string, string>> entry in ports)
+            try
             {
-                Dictionary<string, Dictionary<string,string>> portData = new Dictionary<string, Dictionary<string, string>>();
-                foreach (KeyValuePair<string, string> entry2 in entry.Value)
+                dbcon.connectToDB();
+                Dictionary<string, Dictionary<string, string>> ports = dbcon.getPortInfo();
+                Dictionary<string, Dictionary<string, Dictionary<string, string>>> newPorts = new Dictionary<string, Dictionary<string, Dictionary<string, string>>>();
+                foreach (KeyValuePair<string, Dictionary<string, string>> entry in ports)
                 {
-                    string user = dbcon.getConnectedUser(entry2.Value);
-                    Dictionary<string, string> userdata;
-                    if (user.Equals(""))
+                    Dictionary<string, Dictionary<string, string>> portData = new Dictionary<string, Dictionary<string, string>>();
+                    foreach (KeyValuePair<string, string> entry2 in entry.Value)
                     {
-                        userdata = new Dictionary<string, string>();
+                        string user = dbcon.getConnectedUser(entry2.Value);
+                        Dictionary<string, string> userdata;
+                        if (user.Equals(""))
+                        {
+                            userdata = new Dictionary<string, string>();
+
+                        }
+                        else
+                        {
+                            userdata = dbcon.getUserData(user);
+                        }
+                        portData.Add(entry2.Key, userdata);
 
                     }
-                    else {
-                        userdata = dbcon.getUserData(user);
-                    }
-                    portData.Add(entry2.Key, userdata);
-                    
+                    newPorts.Add(entry.Key, portData);
                 }
-                newPorts.Add(entry.Key, portData);
+                return newPorts;
             }
-            return newPorts;
+            catch(Exception ex)
+            {
+                Console.WriteLine("Error: " + ex);
+                throw;
+            }
+            finally
+            {
+                try
+                {
+                    dbcon.disconnectFromDB();
+                }
+                catch
+                {
+                    Console.WriteLine("Unable to Disconnect from Database");
+                }
+            }
 
         }
 

@@ -16,6 +16,14 @@ namespace SeatingChartAPI.Controllers
             sqlcon = new SqlConnection(cString);
         }
 
+        public DBConnector(string Data_Source, string Initial_Catalog, string User_ID, string Password)
+        {
+            sqlcon = new SqlConnection("Data Source=" + Data_Source + ";" +
+                                       "Initial Catalog=" + Initial_Catalog + ";" +
+                                       "User ID=" + User_ID + ";" +
+                                       "Password=" + Password);
+        }
+
         public DBConnector(string server, string database, string trusted_connection, string uid, string pwd){
             sqlcon = new SqlConnection("server=" + server + ";" +
                                        "database=" + database + ";" +
@@ -34,7 +42,7 @@ namespace SeatingChartAPI.Controllers
             catch (Exception ex)
             {
                 Console.WriteLine(ex.ToString());
-                throw(ex);
+                throw;
             }
         }
 
@@ -47,6 +55,7 @@ namespace SeatingChartAPI.Controllers
             catch (Exception ex)
             {
                 Console.WriteLine(ex.ToString());
+                throw;
             }
         }
 

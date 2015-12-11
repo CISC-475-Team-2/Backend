@@ -23,7 +23,7 @@ namespace SeatingChartAPI.Controllers
             DBConnector testConnection2 = new DBConnector("notaserver.com","notadatabase","yes","notauid","notthepassword");
             Assert.Throws<System.Data.SqlClient.SqlException>(new TestDelegate(testConnection2.connectToDB));
         }
-        [Test]
+        //[Test]
         public void DBConnectorTest3() // tests data pulled from database
         {
             DBConnector testConnection = new DBConnector();
