@@ -32,7 +32,7 @@ namespace SeatingChartAPI.Controllers
             }
             catch
             {
-                Assert.Fail();
+                Assert.Inconclusive();
             }
         }
         [Test]
@@ -54,7 +54,7 @@ namespace SeatingChartAPI.Controllers
             }
             catch
             {
-                Assert.Fail();
+                Assert.Inconclusive();
             }
         }
     }
